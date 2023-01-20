@@ -4472,3 +4472,113 @@ RestClient::Exceptions::OpenTimeout (Timed out connecting to server):
 app/controllers/users_controller.rb:28:in `create'
   [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
   [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20221229132457)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "phone_number" integer, "password_digest" varchar, "agreement" varchar, "github" varchar, "linkedin" varchar, "cv_link" varchar, "profile_img" varchar, "cover_img" varchar, "country" varchar, "bio" varchar, "skills" varchar, "profession" varchar, "user_type" integer, "company_name" varchar, "company_website" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221229132457"]]
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateComments (20221229141719)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "text" varchar, "user_id" integer, "post_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221229141719"]]
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePosts (20221229142507)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "post_title" varchar, "post_description" varchar, "post_img" varchar, "post_like" integer, "post_comment" varchar, "post_category" varchar, "company_id" integer, "post_type" varchar, "user_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221229142507"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateLikes (20230109065128)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "likes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "post_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (2.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230109065128"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePostTypes (20230109081515)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "post_types" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230109081515"]]
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateActiveStorageTables (20230109115848)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "service_name" varchar NOT NULL, "byte_size" bigint NOT NULL, "checksum" varchar NOT NULL, "created_at" datetime NOT NULL)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" datetime NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "blob_id" bigint NOT NULL, "variation_digest" varchar NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230109115848"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to RemoveProfileAndCoverImageFromUsers (20230110053509)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ausers" ("id" integer NOT NULL PRIMARY KEY, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "email" varchar DEFAULT NULL, "phone_number" integer DEFAULT NULL, "password_digest" varchar DEFAULT NULL, "agreement" varchar DEFAULT NULL, "github" varchar DEFAULT NULL, "linkedin" varchar DEFAULT NULL, "cv_link" varchar DEFAULT NULL, "profile_img" varchar DEFAULT NULL, "cover_img" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "bio" varchar DEFAULT NULL, "skills" varchar DEFAULT NULL, "profession" varchar DEFAULT NULL, "user_type" integer DEFAULT NULL, "company_name" varchar DEFAULT NULL, "company_website" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "ausers" ("id","first_name","last_name","email","phone_number","password_digest","agreement","github","linkedin","cv_link","profile_img","cover_img","country","bio","skills","profession","user_type","company_name","company_website","created_at","updated_at")
+                     SELECT "id","first_name","last_name","email","phone_number","password_digest","agreement","github","linkedin","cv_link","profile_img","cover_img","country","bio","skills","profession","user_type","company_name","company_website","created_at","updated_at" FROM "users"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer NOT NULL PRIMARY KEY, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "email" varchar DEFAULT NULL, "phone_number" integer DEFAULT NULL, "password_digest" varchar DEFAULT NULL, "agreement" varchar DEFAULT NULL, "github" varchar DEFAULT NULL, "linkedin" varchar DEFAULT NULL, "cv_link" varchar DEFAULT NULL, "cover_img" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "bio" varchar DEFAULT NULL, "skills" varchar DEFAULT NULL, "profession" varchar DEFAULT NULL, "user_type" integer DEFAULT NULL, "company_name" varchar DEFAULT NULL, "company_website" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "users" ("id","first_name","last_name","email","phone_number","password_digest","agreement","github","linkedin","cv_link","cover_img","country","bio","skills","profession","user_type","company_name","company_website","created_at","updated_at")
+                     SELECT "id","first_name","last_name","email","phone_number","password_digest","agreement","github","linkedin","cv_link","cover_img","country","bio","skills","profession","user_type","company_name","company_website","created_at","updated_at" FROM "ausers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "ausers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ausers" ("id" integer NOT NULL PRIMARY KEY, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "email" varchar DEFAULT NULL, "phone_number" integer DEFAULT NULL, "password_digest" varchar DEFAULT NULL, "agreement" varchar DEFAULT NULL, "github" varchar DEFAULT NULL, "linkedin" varchar DEFAULT NULL, "cv_link" varchar DEFAULT NULL, "cover_img" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "bio" varchar DEFAULT NULL, "skills" varchar DEFAULT NULL, "profession" varchar DEFAULT NULL, "user_type" integer DEFAULT NULL, "company_name" varchar DEFAULT NULL, "company_website" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "ausers" ("id","first_name","last_name","email","phone_number","password_digest","agreement","github","linkedin","cv_link","cover_img","country","bio","skills","profession","user_type","company_name","company_website","created_at","updated_at")
+                     SELECT "id","first_name","last_name","email","phone_number","password_digest","agreement","github","linkedin","cv_link","cover_img","country","bio","skills","profession","user_type","company_name","company_website","created_at","updated_at" FROM "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer NOT NULL PRIMARY KEY, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "email" varchar DEFAULT NULL, "phone_number" integer DEFAULT NULL, "password_digest" varchar DEFAULT NULL, "agreement" varchar DEFAULT NULL, "github" varchar DEFAULT NULL, "linkedin" varchar DEFAULT NULL, "cv_link" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "bio" varchar DEFAULT NULL, "skills" varchar DEFAULT NULL, "profession" varchar DEFAULT NULL, "user_type" integer DEFAULT NULL, "company_name" varchar DEFAULT NULL, "company_website" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "users" ("id","first_name","last_name","email","phone_number","password_digest","agreement","github","linkedin","cv_link","country","bio","skills","profession","user_type","company_name","company_website","created_at","updated_at")
+                     SELECT "id","first_name","last_name","email","phone_number","password_digest","agreement","github","linkedin","cv_link","country","bio","skills","profession","user_type","company_name","company_website","created_at","updated_at" FROM "ausers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "ausers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230110053509"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddDescriptionToPostTypes (20230116124754)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "post_types" ADD "description" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230116124754"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateUserTypes (20230117065805)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "user_types" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230117065805"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to ChangeUserTypeInUser (20230120013350)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ausers" ("id" integer NOT NULL PRIMARY KEY, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "email" varchar DEFAULT NULL, "phone_number" integer DEFAULT NULL, "password_digest" varchar DEFAULT NULL, "agreement" varchar DEFAULT NULL, "github" varchar DEFAULT NULL, "linkedin" varchar DEFAULT NULL, "cv_link" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "bio" varchar DEFAULT NULL, "skills" varchar DEFAULT NULL, "profession" varchar DEFAULT NULL, "user_type" integer DEFAULT NULL, "company_name" varchar DEFAULT NULL, "company_website" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "ausers" ("id","first_name","last_name","email","phone_number","password_digest","agreement","github","linkedin","cv_link","country","bio","skills","profession","user_type","company_name","company_website","created_at","updated_at")
+                     SELECT "id","first_name","last_name","email","phone_number","password_digest","agreement","github","linkedin","cv_link","country","bio","skills","profession","user_type","company_name","company_website","created_at","updated_at" FROM "users"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer NOT NULL PRIMARY KEY, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "email" varchar DEFAULT NULL, "phone_number" integer DEFAULT NULL, "password_digest" varchar DEFAULT NULL, "agreement" varchar DEFAULT NULL, "github" varchar DEFAULT NULL, "linkedin" varchar DEFAULT NULL, "cv_link" varchar DEFAULT NULL, "country" varchar DEFAULT NULL, "bio" varchar DEFAULT NULL, "skills" varchar DEFAULT NULL, "profession" varchar DEFAULT NULL, "user_type" varchar DEFAULT NULL, "company_name" varchar DEFAULT NULL, "company_website" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "users" ("id","first_name","last_name","email","phone_number","password_digest","agreement","github","linkedin","cv_link","country","bio","skills","profession","user_type","company_name","company_website","created_at","updated_at")
+                     SELECT "id","first_name","last_name","email","phone_number","password_digest","agreement","github","linkedin","cv_link","country","bio","skills","profession","user_type","company_name","company_website","created_at","updated_at" FROM "ausers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "ausers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230120013350"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-01-20 09:20:50.427081"], ["updated_at", "2023-01-20 09:20:50.427081"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
